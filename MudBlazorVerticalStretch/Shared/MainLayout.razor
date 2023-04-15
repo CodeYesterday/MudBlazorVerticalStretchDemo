@@ -1,0 +1,45 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider IsDarkMode="true"/>
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+@* MudLayout must be at 100% height *@
+<MudLayout Class="h-100">
+    <MudAppBar Elevation="0">
+        <MudText Typo="Typo.h5" Class="mr-5">Stretch vertically demo</MudText>
+        
+        <NavMenu />
+
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Link="https://mudblazor.com/" Target="_blank" />
+        <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor/" Target="_blank" />
+    </MudAppBar>
+    
+    @* MudMainContent must be at 100% height *@
+    <MudMainContent Class="h-100 main-content">
+        
+        @Body
+        
+    </MudMainContent>
+    
+    @* "abuse" the MudAppBar as a footer *@
+    <MudAppBar Bottom="true" Elevation="0" Class="footer">
+        <MudText>Just some text in the footer</MudText>
+    </MudAppBar>
+</MudLayout>
+
+<style>
+    /* define a custom height for the footer and then set it as bottom padding an the main content */
+    :root {
+        --footer-height: 2em;
+    }
+
+    .main-content {
+        padding-bottom: var(--footer-height);
+    }
+
+    .footer {
+        height: var(--footer-height);
+    }
+</style>

@@ -1,0 +1,41 @@
+﻿@page "/fetchdata"
+@using MudBlazorVerticalStretch.Data
+@inject WeatherForecastService ForecastService
+
+@* 
+- make with xxl to fill horizontally
+- set to 100% height
+- define as a flex-column
+*@
+<MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="h-100 d-flex flex-column">
+
+    <PageTitle>Weather forecast</PageTitle>
+
+    <MudText Typo="Typo.h3" GutterBottom="true">Weather forecast</MudText>
+    <MudText Class="mb-8">This component demonstrates fetching data from the server.</MudText>
+    
+    @*
+        - set flex-grow-1 to use up the remaining space of the flex-column
+        - the MudDataGrid must be set to 100% height and overflow-hidden
+        - the Height property (which affects the inner div in on the 2nd level) must be set to 100% height
+        - FixedHeader=true is important no only scroll the rows
+    *@
+    <MudDataGrid Items="forecasts" Virtualize="true" FixedHeader="true" Height="100%" Class="h-100 flex-grow-1 overflow-hidden">
+        <Columns>
+            <PropertyColumn Property="x => x.Date" />
+            <PropertyColumn Property="x => x.TemperatureC" Title="°C" />
+            <PropertyColumn Property="x => x.TemperatureF" Title="°F" />
+            <PropertyColumn Property="x => x.Summary" />
+        </Columns>
+    </MudDataGrid>
+
+    @code {
+        private WeatherForecast[]? forecasts;
+
+        protected override async Task OnInitializedAsync()
+        {
+        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        }
+    }
+
+</MudContainer>

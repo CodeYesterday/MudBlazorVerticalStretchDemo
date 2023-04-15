@@ -1,0 +1,14 @@
+﻿/* html height must be set to 100% */
+html {
+    height: 100%;
+}
+
+/* body height must be set to 100% as well */
+body {
+    height: 100%;
+}
+
+/* multiple controls must be set to 100% height as well */
+.h-100 {
+    height: 100%;
+}
